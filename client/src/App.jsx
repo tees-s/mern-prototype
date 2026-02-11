@@ -4,7 +4,11 @@ import TaskInput from './components/TaskInput';
 import TaskItem from './components/TaskItem';
 import './App.css';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+// ❌ แบบเดิม (ใช้ได้เฉพาะในเครื่องเรา)
+// const API_URL = 'http://localhost:5000/api/tasks';
+
+// ✅ แบบใหม่ (ดึงค่าจาก Environment Variable ที่เราตั้งใน Vercel)
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [tasks, setTasks] = useState([]);
