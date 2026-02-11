@@ -8,7 +8,7 @@ import './App.css';
 // const API_URL = 'http://localhost:5000/api/tasks';
 
 // ✅ แบบใหม่ (ดึงค่าจาก Environment Variable ที่เราตั้งใน Vercel)
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/tasks";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -16,8 +16,12 @@ function App() {
   const [filterStatus, setFilterStatus] = useState('all');
 
   const fetchTasks = async () => {
-    const res = await axios.get(API_URL);
-    setTasks(res.data);
+    try {
+      const res = await axios.get(API_URL);
+      setTasks(res.data);
+    } catch (err) {
+      console.error("เรียก API ไม่สำเร็จ:", err);
+    }
   };
 
   useEffect(() => { fetchTasks(); }, []);
