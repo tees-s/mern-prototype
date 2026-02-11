@@ -1,0 +1,11 @@
+# ไม่เอา Library ขึ้นไป (มันหนักและโหลดใหม่ได้)
+node_modules/
+server/node_modules/
+client/node_modules/
+
+# ไม่เอาความลับขึ้นไป
+.env
+server/.env
+
+# ไม่เอาผลลัพธ์การ Build ขึ้นไป (เพราะ Vercel จะสร้างเอง)
+client/dist/
