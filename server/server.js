@@ -7,8 +7,14 @@ require('dotenv').config();
 const Task = require('./models/Task');
 
 const app = express();
-app.use(cors());
+const cors = require('cors');
 app.use(express.json());
+
+app.use(cors({
+  origin: "https://mern-prototype.vercel.app/", // 👈 ใส่ URL หน้าเว็บ Vercel ของอาจารย์ตรงนี้
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 // --- เพิ่มส่วนการเชื่อมต่อ Database ---
 const uri = process.env.MONGO_URI;
